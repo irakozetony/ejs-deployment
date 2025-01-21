@@ -5,8 +5,15 @@ const sanitizeHTML = require('sanitize-html')
 const bcrypt = require("bcrypt")
 const cookieParser = require('cookie-parser')
 const express = require("express")
-const db = require("better-sqlite3")("ourAPP.db")
-db.pragma("journal_mode = WAL")
+const path = require("path");
+
+// Use a dynamic path for the SQLite database
+const dbPath = process.env.NODE_ENV === "production"
+    ? path.join(process.env.TMPDIR || "/tmp", "ourApp.db") // Use temporary directory for production
+    : path.join(__dirname, "ourApp.db"); // Use local directory for development
+
+const db = require("better-sqlite3")(dbPath);
+db.pragma("journal_mode = WAL");
 
 // database setup here
 const createTables = db.transaction(() => {
