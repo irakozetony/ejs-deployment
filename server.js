@@ -52,7 +52,8 @@ const app = express()
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs")
 app.use(express.urlencoded({extended: false}))
-app.use(express.static("public"))
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser())
 
 app.use(function (req, res, next) {
