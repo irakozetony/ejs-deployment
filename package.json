@@ -2,7 +2,7 @@
   "name": "our-backend-project",
   "version": "1.0.0",
   "description": "my first project",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "dev": "nodemon server",
     "test": "echo \"Error: no test specified\" && exit 1"
